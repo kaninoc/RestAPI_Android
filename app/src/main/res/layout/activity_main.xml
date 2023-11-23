@@ -1,32 +1,42 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ScrollView
+    <Button
+        android:id="@+id/showAll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/jsonTextView"
+        android:layout_marginTop="16dp"
+        android:text="Lista Completa" />
 
-        <TextView
-            android:id="@+id/jsonTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="JSON Response will be displayed here"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:background="@android:color/darker_gray"
-            android:padding="16dp"
-            android:lineSpacingExtra="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <Button
+        android:id="@+id/showOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/jsonTextView"
+        android:layout_marginTop="16dp"
+        android:text="Lista Ordenada" />
 
-    </ScrollView>
+    <Button
+        android:id="@+id/sizeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/jsonTextView"
+        android:layout_marginTop="16dp"
+        android:text="Filtro Longitud" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/customButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/jsonTextView"
+        android:layout_marginTop="16dp"
+        android:text="Filtro Custom" />
+
+
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:padding="30dp"
+tools:context=".MainActivity">
+
+<!-- TextView -->
+<TextView
+    android:id="@+id/sampleTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Ingrese el limite de la lista"
+    android:textColor="#770D8A"
+    android:textSize="24sp"/>
+
+<!-- EditText -->
+<EditText
+    android:id="@+id/lengthInput"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Ingresa algo aquí"
+    android:textColor="#ffffff"
+    android:textColorHint="#ffffff"
+    android:background="#770D8A"
+    android:textSize="24sp"
+    android:layout_marginTop="40dp"/>
+
+<!-- Button -->
+<Button
+    android:id="@+id/size"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Limitar"
+    android:textSize="18sp"
+    android:background="#770D8A"
+    android:textColor="#ffffff"
+
+    android:layout_marginTop="40dp"/>
+
+</LinearLayout>
