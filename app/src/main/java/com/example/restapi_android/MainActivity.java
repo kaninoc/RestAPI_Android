@@ -9,11 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restapi_android.activities.FullList;
 import com.example.restapi_android.activities.OrderList;
+import com.example.restapi_android.filters.CustomActivity;
 import com.example.restapi_android.filters.FiltersActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnAll, btnOrder, btnSize;
+    Button btnAll, btnOrder, btnSize, btnCustom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         btnAll = findViewById(R.id.showAll);
         btnOrder = findViewById(R.id.showOrder);
         btnSize = findViewById(R.id.sizeButton);
-
+        btnCustom = findViewById(R.id.customButton);
         btnAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnCustom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCustomList();
+            }
+        });
+
     }
 
     private void showAllList(){
@@ -58,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void showLimitList(){
         Intent intent = new Intent(this, FiltersActivity.class);
+        startActivity(intent);
+    }
+
+    private void showCustomList(){
+        Intent intent = new Intent(this, CustomActivity.class);
         startActivity(intent);
     }
 

@@ -30,5 +30,13 @@
         android:layout_marginTop="16dp"
         android:text="Filtro Longitud" />
 
+    <Button
+        android:id="@+id/customButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/jsonTextView"
+        android:layout_marginTop="16dp"
+        android:text="Filtro Custom" />
+
 
 </LinearLayout>

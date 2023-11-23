@@ -18,26 +18,39 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class FilteredSendesdList extends AppCompatActivity {
+public class FilteredCustomList extends AppCompatActivity {
 
     TextView jsonTextView;
 
     private String apiKey = "9fgs56znfqc7ax8lb8gc7v2bl"; // Reemplaza con tu propia API key
-    private String url = "https://www.datos.gov.co/resource/hk5x-635y.json?$limit=";
+    private String url = "https://www.datos.gov.co/resource/hk5x-635y.json?$where=";
 
-    private static String size = "";
+    private static String column,value = "";
 
     private JSONArray jsonArray = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_filtered_sendesd_list);
+        setContentView(R.layout.activity_filtered_custom_list);
+
         // Recuperar el extra
         Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("SIZE_EXTRA")) {
-            size = intent.getStringExtra("SIZE_EXTRA");
-            url+=size;
+        if (intent != null && intent.hasExtra("COLUMN")) {
+            column = intent.getStringExtra("COLUMN");
+
+            if (column.equals("Colegio")){
+                column = "institucion_educativa";
+            }else if(column.equals("Year 2020")){
+                column = "a_o_2020";
+            }
+            url+=column+"='";
         }
+
+        if (intent != null && intent.hasExtra("VALUE")) {
+            value = intent.getStringExtra("VALUE");
+            url+=value+"'";
+        }
+
         jsonTextView = findViewById(R.id.jsonTextView);
         listFiltered(jsonTextView);
     }
