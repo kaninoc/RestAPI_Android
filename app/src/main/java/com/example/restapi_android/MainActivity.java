@@ -1,67 +1,65 @@
 package com.example.restapi_android;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.restapi_android.activities.FullList;
+import com.example.restapi_android.activities.OrderList;
+import com.example.restapi_android.filters.FiltersActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String apiKey = "9fgs56znfqc7ax8lb8gc7v2bl"; // Reemplaza con tu propia API key
-    private String url = "https://www.datos.gov.co/resource/hk5x-635y.json?$limit=30";
-
-
-    private JSONArray jsonArray = null;
+    Button btnAll, btnOrder, btnSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView jsonTextView = findViewById(R.id.jsonTextView);
+        btnAll = findViewById(R.id.showAll);
+        btnOrder = findViewById(R.id.showOrder);
+        btnSize = findViewById(R.id.sizeButton);
 
-        listICFES(jsonTextView);
-    }
-
-    private void listICFES(final TextView jsonTextView) {
-        JsonArrayRequest getRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+        btnAll.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    jsonArray = response;
-
-                    // Itera sobre el array y agrega la información al TextView
-                    StringBuilder listaCompleta = new StringBuilder();
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String institucionEducativa = jsonObject.getString("institucion_educativa");
-                        listaCompleta.append("Institución Educativa: ").append(institucionEducativa).append("\n");
-                        // Puedes agregar más campos según sea necesario
-                    }
-
-                    // Muestra la lista en el TextView
-                    jsonTextView.setText(listaCompleta.toString());
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("error", error.getMessage());
+            public void onClick(View v) {
+                showAllList();
             }
         });
 
-        Volley.newRequestQueue(this).add(getRequest);
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showOrderList();
+            }
+        });
+
+        btnSize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLimitList();
+            }
+        });
+
     }
+
+    private void showAllList(){
+        Intent intent = new Intent(this, FullList.class);
+        startActivity(intent);
+    }
+
+    private void showOrderList(){
+        Intent intent = new Intent(this, OrderList.class);
+        startActivity(intent);
+    }
+
+    private void showLimitList(){
+        Intent intent = new Intent(this, FiltersActivity.class);
+        startActivity(intent);
+    }
+
+
 }
